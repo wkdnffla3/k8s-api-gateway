@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GatewayController {
     @GetMapping(value = "/hello")
     public ApiResponseDto<String> test() {
+
         return ApiResponseDto.createOk("안녕 쿠버네티스");
     }
 }
