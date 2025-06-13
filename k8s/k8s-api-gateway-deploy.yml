@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-api-gateway-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-api-gateway
+  template:
+    metadata:
+      labels:
+        app: k8s-api-gateway
+    spec:
+      containers:
+        - name: k8s-api-gateway
+          image: wkdnffla3/k8s-api-gateway:0.0.4
+          imagePullPolicy: Always
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /etc/config
+              name: api-gateway-config-volume
+      volumes:
+        - name: api-gateway-config-volume
+          configMap:
+            name: api-gateway-config
+            items:
+              - key: application-dev.yml
+                path: application-dev.yml
