@@ -1,6 +1,6 @@
 spring:
-  config :
-    import: file:/etc/config/application-dev.yaml
+  config:
+    import: file:/etc/config/application-dev.yml
 
 #server:
 #  port: 8080
